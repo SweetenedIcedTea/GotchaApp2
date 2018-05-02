@@ -14,6 +14,8 @@
 		8733133B209774BA00B1D46E /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87331338209774BA00B1D46E /* Poll.swift */; };
 		8733133C209774BA00B1D46E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87331339209774BA00B1D46E /* Server.swift */; };
 		8733133D209774BA00B1D46E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733133A209774BA00B1D46E /* Player.swift */; };
+		87CA9AF6209A262D003C11E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CA9AF5209A262D003C11E6 /* LoginViewController.swift */; };
+		87CA9AF8209A281D003C11E6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CA9AF7209A281D003C11E6 /* RegisterViewController.swift */; };
 		87DB4B5F203756AA003622F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB4B5E203756AA003622F5 /* AppDelegate.swift */; };
 		87DB4B64203756AA003622F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DB4B62203756AA003622F5 /* Main.storyboard */; };
 		87DB4B66203756AA003622F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87DB4B65203756AA003622F5 /* Assets.xcassets */; };
@@ -56,6 +58,8 @@
 		87331338209774BA00B1D46E /* Poll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Poll.swift; path = GotchaApp/GotchaAppBaseModel/Poll.swift; sourceTree = SOURCE_ROOT; };
 		87331339209774BA00B1D46E /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Server.swift; path = GotchaApp/GotchaAppBaseModel/Server.swift; sourceTree = SOURCE_ROOT; };
 		8733133A209774BA00B1D46E /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = GotchaApp/GotchaAppBaseModel/Player.swift; sourceTree = SOURCE_ROOT; };
+		87CA9AF5209A262D003C11E6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		87CA9AF7209A281D003C11E6 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		87DB4B5B203756AA003622F5 /* GotchaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GotchaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87DB4B5E203756AA003622F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87DB4B63203756AA003622F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -149,7 +153,9 @@
 				87DB4B6A203756AA003622F5 /* Info.plist */,
 				8869D6A22097766C0032558D /* GotchaAppBaseModel */,
 				885A1BB02090F5070074ACF6 /* MenuViewController.swift */,
+				87CA9AF5209A262D003C11E6 /* LoginViewController.swift */,
 				885A1BB22090F55C0074ACF6 /* GamesViewController.swift */,
+				87CA9AF7209A281D003C11E6 /* RegisterViewController.swift */,
 				8876D6712095087E00D2C436 /* Camera */,
 				885A1BB62090F59D0074ACF6 /* ShopViewController.swift */,
 				885A1BB82090F5B70074ACF6 /* EvaluationsViewController.swift */,
@@ -394,6 +400,7 @@
 				87331337209774AE00B1D46E /* Image.swift in Sources */,
 				885A1BB52090F57D0074ACF6 /* CameraViewController.swift in Sources */,
 				885A1BB92090F5B70074ACF6 /* EvaluationsViewController.swift in Sources */,
+				87CA9AF6209A262D003C11E6 /* LoginViewController.swift in Sources */,
 				885A1BB72090F59D0074ACF6 /* ShopViewController.swift in Sources */,
 				885A1BB32090F55C0074ACF6 /* GamesViewController.swift in Sources */,
 				8876D66A2094F86800D2C436 /* SendViewController.swift in Sources */,
@@ -401,6 +408,7 @@
 				873313352097749D00B1D46E /* Game.swift in Sources */,
 				873313332097748E00B1D46E /* Errors.swift in Sources */,
 				8876D66C2094FA8700D2C436 /* TargetingView.swift in Sources */,
+				87CA9AF8209A281D003C11E6 /* RegisterViewController.swift in Sources */,
 				8876D66E2094FAAC00D2C436 /* FocusingImageView.swift in Sources */,
 				8733133D209774BA00B1D46E /* Player.swift in Sources */,
 				885A1BB12090F5070074ACF6 /* MenuViewController.swift in Sources */,
