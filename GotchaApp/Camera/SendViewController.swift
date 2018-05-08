@@ -16,6 +16,19 @@ class SendViewController: UIViewController{
     
     @IBAction func yesButtonTapped(){
         print("Yes button was tapped")
+        
+        //Encoding image to string
+        let loadedImageData = UIImagePNGRepresentation(imageView.image!)!
+        let strBase64 = loadedImageData.base64EncodedString(options: .lineLength64Characters)
+        
+        //Create a poll object with strBase64 as its imageString
+        //Save the poll object to database
+        
+//        //Decoding string to image
+//        let dataDecoded : Data = Data(base64Encoded: strBase64, options: .ignoreUnknownCharacters)!
+//        let decodedImage = UIImage(data: dataDecoded)
+//        let reorientedImage = UIImage(cgImage: (decodedImage?.cgImage)!, scale: 1.0, orientation: .right)
+
     }
     
     @IBAction func noButtonTapped(){
