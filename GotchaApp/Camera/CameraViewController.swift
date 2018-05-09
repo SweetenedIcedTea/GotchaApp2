@@ -317,6 +317,9 @@ class CameraViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("CameraViewController Appearing")
+    }
 }
 
 extension CameraViewController : AVCapturePhotoCaptureDelegate {

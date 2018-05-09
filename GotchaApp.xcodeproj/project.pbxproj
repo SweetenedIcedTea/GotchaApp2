@@ -31,6 +31,7 @@
 		8876D66A2094F86800D2C436 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876D6692094F86800D2C436 /* SendViewController.swift */; };
 		8876D66C2094FA8700D2C436 /* TargetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876D66B2094FA8700D2C436 /* TargetingView.swift */; };
 		8876D66E2094FAAC00D2C436 /* FocusingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876D66D2094FAAC00D2C436 /* FocusingImageView.swift */; };
+		88E5BD5F20A26D7D009ED0AB /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5BD5E20A26D7D009ED0AB /* Evaluation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		8876D6692094F86800D2C436 /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		8876D66B2094FA8700D2C436 /* TargetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetingView.swift; sourceTree = "<group>"; };
 		8876D66D2094FAAC00D2C436 /* FocusingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusingImageView.swift; sourceTree = "<group>"; };
+		88E5BD5E20A26D7D009ED0AB /* Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluation.swift; sourceTree = "<group>"; };
 		EAD0CE7CC242533E88649AEA /* Pods_GotchaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GotchaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8963E205B31E5C50513D52 /* Pods-GotchaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GotchaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GotchaApp/Pods-GotchaApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +192,7 @@
 				87331336209774AE00B1D46E /* Image.swift */,
 				873313342097749D00B1D46E /* Game.swift */,
 				873313322097748E00B1D46E /* Errors.swift */,
+				88E5BD5E20A26D7D009ED0AB /* Evaluation.swift */,
 			);
 			path = GotchaAppBaseModel;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				885A1BB72090F59D0074ACF6 /* ShopViewController.swift in Sources */,
 				885A1BB32090F55C0074ACF6 /* GamesViewController.swift in Sources */,
 				8876D66A2094F86800D2C436 /* SendViewController.swift in Sources */,
+				88E5BD5F20A26D7D009ED0AB /* Evaluation.swift in Sources */,
 				8733133B209774BA00B1D46E /* Poll.swift in Sources */,
 				873313352097749D00B1D46E /* Game.swift in Sources */,
 				873313332097748E00B1D46E /* Errors.swift in Sources */,
@@ -579,7 +583,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JBGT37SZBJ;
+				DEVELOPMENT_TEAM = DTGL57G4WS;
 				INFOPLIST_FILE = GotchaApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TheSucc.GotchaApp;
@@ -595,7 +599,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JBGT37SZBJ;
+				DEVELOPMENT_TEAM = DTGL57G4WS;
 				INFOPLIST_FILE = GotchaApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TheSucc.GotchaApp;

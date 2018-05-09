@@ -20,5 +20,11 @@ class EvaluationsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("EvaluationsViewController Appearing")
+        
+        //Get evaluations from database
+        //filter out evaluations that you already answered for
+    }
     
 }
