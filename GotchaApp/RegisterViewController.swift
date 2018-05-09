@@ -11,19 +11,21 @@ import UIKit
 import Firebase
 
 class RegisterViewController: UIViewController {
-    var ref: DatabaseReference!
+    let ref = Database.database().reference(withPath: "registered-players")
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var userTextField: UITextField!
     @IBOutlet var passTextField: UITextField!
     
     @IBAction func registerPressed(_ sending: UIButton){
         print("Register Pressed")
-        ref = Database.database().reference()
-        let nameText = nameTextField.text
+                let nameText = nameTextField.text
         let userText = userTextField.text
         let passText = passTextField.text
         print("Name: \(nameText!) | Username: \(userText!) | Password: \(passText!)")
-        self.ref.child("users").child(user.uid).setValue(["username": username])
+        
+        let newPlayer = Player(name: nameText!, username: userText!, pass: passText!)
+        let newPlayerRef = self.ref.child(userText!.lowercased())
+        newPlayerRef.setValue(newPlayer.toAnyObject())
         
     }
     

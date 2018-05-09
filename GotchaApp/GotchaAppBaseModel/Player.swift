@@ -48,6 +48,14 @@ class Player: Hashable, CustomStringConvertible{
     func giveTarget(game: Game){
         
     }
+
+    func toAnyObject()-> Any{
+        return([
+                "name": name,
+                "username": username,
+                "password": password
+            ])
+    }
 }
 
 extension Player: Equatable{
