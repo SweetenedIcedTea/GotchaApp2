@@ -11,6 +11,8 @@ import Foundation
 import UIKit
 
 class LoginViewController: UIViewController {
+    @IBOutlet var userTextField: UITextField!
+    @IBOutlet var passTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
