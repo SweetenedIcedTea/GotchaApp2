@@ -23,6 +23,8 @@ class SendViewController: UIViewController{
         
         //Create a poll object with strBase64 as its imageString
         //Save the poll object to database
+        //let newEvaluation = Evaluation(imageString: strBase64, target: Player)
+        
         
 //        //Decoding string to image
 //        let dataDecoded : Data = Data(base64Encoded: strBase64, options: .ignoreUnknownCharacters)!
