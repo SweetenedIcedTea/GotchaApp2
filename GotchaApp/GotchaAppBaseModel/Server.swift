@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+/*
 class Server{
     var games = [Game]()
     var poll = Poll()
@@ -102,3 +102,4 @@ class Server{
     func isPlayerInGame(player: Player, game: Game){
     }
 }
+*/

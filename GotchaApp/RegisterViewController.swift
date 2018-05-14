@@ -7,10 +7,29 @@
 //
 
 import Foundation
+import Firebase
 import UIKit
 
 class RegisterViewController: UIViewController {
+    let ref = Database.database().reference(withPath: "registered-players")
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var userTextField: UITextField!
+    @IBOutlet var passTextField: UITextField!
     
+    @IBAction func registerPressed(_ sending: UIButton){
+        print("Register Pressed")
+        let nameText = nameTextField.text
+        let userText = userTextField.text
+        let passText = passTextField.text
+        let points = 0
+        print("Name: \(nameText!) | Username: \(userText!) | Password: \(passText!)")
+        
+        let newPlayer = Player(name: nameText!, username: userText!, pass: passText!, points: points)
+        let newPlayerRef = self.ref.child(userText!.lowercased())
+        newPlayerRef.setValue(newPlayer.toAnyObject())
+        
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

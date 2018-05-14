@@ -12,7 +12,7 @@ class Player: Hashable, CustomStringConvertible{
     var name: String
     var username: String
     var password: Int
-    var points = 0
+    var points: Int
     var targets = [Player]()
     
     var hashValue: Int {
@@ -23,10 +23,11 @@ class Player: Hashable, CustomStringConvertible{
         return "\(name), username: \(username)"
     }
     
-    init(name: String, username: String, pass: String){
+    init(name: String, username: String, pass: String, points: Int){
         self.name = name
         self.username = username
         self.password = Player.hashPass(pass)
+        self.points = points
     }
     
     func addPoints(_ add: Int){
@@ -48,6 +49,16 @@ class Player: Hashable, CustomStringConvertible{
     func giveTarget(game: Game){
         
     }
+    
+    func toAnyObject()-> Any{
+        return([
+            "name": name,
+            "username": username,
+            "password": password,
+            "points" : points
+            ])
+    }
+
 }
 
 extension Player: Equatable{

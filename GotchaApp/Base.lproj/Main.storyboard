@@ -258,15 +258,30 @@
                                     <constraint firstItem="cq4-Ge-OFf" firstAttribute="trailing" secondItem="qDw-eJ-gJR" secondAttribute="trailing" id="5fa-Qg-DgR"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qt2-0B-APQ">
+                                <rect key="frame" x="143" y="325" width="89" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerPressed:" destination="ggW-3q-tkN" eventType="touchUpInside" id="3Ub-yb-qlA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="qt2-0B-APQ" firstAttribute="centerX" secondItem="xEY-hU-cpy" secondAttribute="centerX" id="UHb-5l-yDW"/>
+                            <constraint firstItem="prU-Tr-TQo" firstAttribute="bottom" secondItem="qt2-0B-APQ" secondAttribute="bottom" constant="300" id="Uxl-N7-5uN"/>
                             <constraint firstItem="jLH-fs-gob" firstAttribute="leading" secondItem="prU-Tr-TQo" secondAttribute="leading" constant="20" id="Znb-4c-14W"/>
                             <constraint firstItem="jLH-fs-gob" firstAttribute="top" secondItem="prU-Tr-TQo" secondAttribute="top" constant="60" id="mLS-cT-3xN"/>
                             <constraint firstItem="jLH-fs-gob" firstAttribute="centerX" secondItem="xEY-hU-cpy" secondAttribute="centerX" id="oZ1-dx-g1v"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="prU-Tr-TQo"/>
                     </view>
+                    <connections>
+                        <outlet property="nameTextField" destination="z8N-xz-6A1" id="KUX-4a-pgU"/>
+                        <outlet property="passTextField" destination="Vqs-mE-plq" id="FsR-y1-I7d"/>
+                        <outlet property="userTextField" destination="xEj-bb-Xsg" id="gf6-v4-I7K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hY3-lM-OJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
