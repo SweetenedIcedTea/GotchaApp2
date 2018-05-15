@@ -157,7 +157,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <segue destination="XIo-PV-5uk" kind="show" id="Vau-Aq-NI3"/>
+                                    <action selector="loginPressed:" destination="gqQ-9a-how" eventType="touchUpInside" id="szs-jx-xfZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzc-CC-VaI">
@@ -182,6 +182,7 @@
                     <connections>
                         <outlet property="passTextField" destination="zgm-Aa-dr4" id="uUh-Ic-NuL"/>
                         <outlet property="userTextField" destination="3vM-eR-9zu" id="q1A-js-Cej"/>
+                        <segue destination="XIo-PV-5uk" kind="show" identifier="login" id="lY3-AF-E6f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcG-IH-LN2" userLabel="First Responder" sceneMemberID="firstResponder"/>

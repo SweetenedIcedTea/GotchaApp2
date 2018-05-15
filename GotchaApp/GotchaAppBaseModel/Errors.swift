@@ -8,5 +8,5 @@
 
 import Foundation
 
-let errorPlayer = Player(name: "error", username: "error", pass: "error")
+let errorPlayer = Player(name: "error", username: "error", pass: "error", points: -420)
 let errorGame = Game(admin: errorPlayer, name: "error")

@@ -23,7 +23,7 @@ class RegisterViewController: UIViewController {
         let passText = passTextField.text
         print("Name: \(nameText!) | Username: \(userText!) | Password: \(passText!)")
         
-        let newPlayer = Player(name: nameText!, username: userText!, pass: passText!)
+        let newPlayer = Player(name: nameText!, username: userText!, pass: passText!, points: 0)
         let newPlayerRef = self.ref.child(userText!.lowercased())
         newPlayerRef.setValue(newPlayer.toAnyObject())
         

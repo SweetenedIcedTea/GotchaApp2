@@ -13,8 +13,8 @@ class Server{
     var poll = Poll()
     var players = Set<Player>()
     
-    func addPlayer(name: String, username: String, pass: String){
-        let newPlayer = Player(name: name, username: username, pass: pass)
+    func addPlayer(name: String, username: String, pass: String, points: Int){
+        let newPlayer = Player(name: name, username: username, pass: pass, points: points)
         players.insert(newPlayer)
     }
     
@@ -36,7 +36,7 @@ class Server{
             }
         }
         print("could not find player")
-        return(Player(name: "error", username: "error", pass: "error"))
+        return(errorPlayer)
     }
     
     func listPlayerHashes(){
