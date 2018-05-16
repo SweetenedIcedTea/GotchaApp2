@@ -8,8 +8,10 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class SendViewController: UIViewController{
+    let ref = Database.database().reference(withPath: "all-evaluations")
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var visibilityBackground: UIView!
     var image: UIImage!
@@ -21,16 +23,13 @@ class SendViewController: UIViewController{
         let loadedImageData = UIImagePNGRepresentation(imageView.image!)!
         let strBase64 = loadedImageData.base64EncodedString(options: .lineLength64Characters)
         
-        //Create a poll object with strBase64 as its imageString
-        //Save the poll object to database
-        //let newEvaluation = Evaluation(imageString: strBase64, target: Player)
+        let target = Player(name: "TargetTest", username: "IamATarget", pass: "hillo", points: 0)
+        let newEvaluation = Evaluation(imageString: strBase64, target: target)
         
+        let newEvalRef = self.ref.child("EvalForTargetTest")
+        newEvalRef.setValue(newEvaluation.toAnyObject())
+        self.ref.child("EvalForTargetTest").child("target").setValue(target.toAnyObject())
         
-//        //Decoding string to image
-//        let dataDecoded : Data = Data(base64Encoded: strBase64, options: .ignoreUnknownCharacters)!
-//        let decodedImage = UIImage(data: dataDecoded)
-//        let reorientedImage = UIImage(cgImage: (decodedImage?.cgImage)!, scale: 1.0, orientation: .right)
-
     }
     
     @IBAction func noButtonTapped(){

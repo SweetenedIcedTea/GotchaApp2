@@ -10,11 +10,17 @@ import Foundation
 import Firebase
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController,  UITextFieldDelegate{
     let ref = Database.database().reference(withPath: "registered-players")
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var userTextField: UITextField!
     @IBOutlet var passTextField: UITextField!
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        nameTextField.resignFirstResponder()
+        userTextField.resignFirstResponder()
+        passTextField.resignFirstResponder()
+    }
     
     @IBAction func registerPressed(_ sending: UIButton){
         print("Register Pressed")
@@ -29,6 +35,8 @@ class RegisterViewController: UIViewController {
         newPlayerRef.setValue(newPlayer.toAnyObject())
         
     }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

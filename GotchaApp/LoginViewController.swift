@@ -10,13 +10,18 @@ import Foundation
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,  UITextFieldDelegate {
     
     @IBOutlet var usernameField: UITextField!
     @IBOutlet var passwordField: UITextField!
     @IBOutlet var usernameErrorLabel: UILabel!
     @IBOutlet var passwordErrorLabel: UILabel!
     @IBOutlet var invalidLoginLabel: UILabel!
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        usernameField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

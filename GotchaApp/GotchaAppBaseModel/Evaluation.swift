@@ -36,4 +36,13 @@ class Evaluation: CustomStringConvertible{
         return "Evaluation for target: \(target.username)"
     }
     
+    func toAnyObject()-> Any{
+        return([
+            "imageString": imageString,
+            "target": "myTarget",
+            "numVotes": numVotes,
+            "rating" : rating
+            ])
+    }
+    
 }
