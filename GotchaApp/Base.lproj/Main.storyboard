@@ -461,7 +461,7 @@
         <!--Games-->
         <scene sceneID="9wD-qV-ZgZ">
             <objects>
-                <viewController id="y8E-hs-YeL" sceneMemberID="viewController">
+                <viewController id="y8E-hs-YeL" customClass="GamesViewController" customModule="GotchaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bBl-kG-MvV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -698,7 +698,7 @@
         <!--Shop-->
         <scene sceneID="VsW-LE-9hr">
             <objects>
-                <viewController id="qPZ-Tj-Ezv" sceneMemberID="viewController">
+                <viewController id="qPZ-Tj-Ezv" customClass="ShopViewController" customModule="GotchaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8NW-oN-Da0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -754,7 +754,7 @@
         <!--Evaluations-->
         <scene sceneID="iOm-gX-IAc">
             <objects>
-                <viewController id="NAK-s8-2Z7" sceneMemberID="viewController">
+                <viewController id="NAK-s8-2Z7" customClass="EvaluationsViewController" customModule="GotchaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K0I-OA-eoE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

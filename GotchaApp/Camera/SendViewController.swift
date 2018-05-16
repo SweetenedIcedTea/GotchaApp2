@@ -23,12 +23,10 @@ class SendViewController: UIViewController{
         let loadedImageData = UIImagePNGRepresentation(imageView.image!)!
         let strBase64 = loadedImageData.base64EncodedString(options: .lineLength64Characters)
         
-        let target = Player(name: "TargetTest", username: "IamATarget", pass: "hillo", points: 0)
-        let newEvaluation = Evaluation(imageString: strBase64, target: target)
+        let newEvaluation = Evaluation(imageString: strBase64, targetUserName: "TargetUserName")
         
         let newEvalRef = self.ref.child("EvalForTargetTest")
         newEvalRef.setValue(newEvaluation.toAnyObject())
-        self.ref.child("EvalForTargetTest").child("target").setValue(target.toAnyObject())
         
     }
     

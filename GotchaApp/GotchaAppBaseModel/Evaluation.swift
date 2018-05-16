@@ -11,13 +11,13 @@ import UIKit
 
 class Evaluation: CustomStringConvertible{
     var imageString: String
-    var target: Player
+    var targetUserName: String
     var numVotes: Int
     var rating: Double
     
-    init(imageString: String, target: Player){
+    init(imageString: String, targetUserName: String){
         self.imageString = imageString
-        self.target = target
+        self.targetUserName = targetUserName
         numVotes = 0
         rating = 0
     }
@@ -33,13 +33,13 @@ class Evaluation: CustomStringConvertible{
     }
     
     var description: String {
-        return "Evaluation for target: \(target.username)"
+        return "Evaluation for target: \(targetUserName)"
     }
     
     func toAnyObject()-> Any{
         return([
             "imageString": imageString,
-            "target": "myTarget",
+            "targetUserName": targetUserName,
             "numVotes": numVotes,
             "rating" : rating
             ])

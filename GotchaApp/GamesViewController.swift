@@ -9,6 +9,7 @@
 import UIKit
 
 class GamesViewController: UIViewController {
+    var me: Player = Me!
     
     override func viewDidLoad() {
         super.viewDidLoad()

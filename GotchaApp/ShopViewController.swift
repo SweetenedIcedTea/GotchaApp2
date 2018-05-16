@@ -9,7 +9,7 @@
 import UIKit
 
 class ShopViewController: UIViewController {
-    
+    var me: Player = Me!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

@@ -10,28 +10,12 @@ import UIKit
 import Firebase
 
 class EvaluationsViewController: UIViewController {
+    var me: Player = Me!
     let ref = Database.database().reference(withPath: "all-evaluations")
-    var evaluations: [Evaluation]()
+    var evaluations = [Evaluation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-//        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-//            // Get user value
-//            let value = snapshot.value as? NSDictionary
-//            let username = value?["username"] as? String ?? ""
-//            let user = User(username: username)
-//
-//            // ...
-//        }) { (error) in
-//            print(error.localizedDescription)
-//        }
-//        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-//            let value = snapshot.value as? NSDictionary
-//            for eval in value?{
-//                evaluations.append(Evaluation(imageString: eval.imageString, target: Player))
-//            }
-//        })
         
         //Decoding string to image
 //        let dataDecoded : Data = Data(base64Encoded: strBase64, options: .ignoreUnknownCharacters)!
@@ -44,12 +28,45 @@ class EvaluationsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        print("EvaluationsVC disappearing")
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         print("EvaluationsViewController Appearing")
         
         //Get evaluations from database
         //filter out evaluations that you already answered for
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? [String: Any]
+            for eval in value!{
+                let evalProperty = eval.value as? [String: Any]
+                
+                var numVotes = 0
+                var imageString = ""
+                var rating = 0
+                var targetUserName = ""
+                
+                for property in evalProperty!{
+                    print(property.key)
+                    switch property.key{
+                    case "numVotes":
+                        numVotes = property.value as! Int
+                    case "target":
+                        targetUserName = property.value as! String
+                    case "imageString":
+                        imageString = property.value as! String
+                    case "rating":
+                        rating = property.value as! Int
+                    default:
+                        print("error: unrecognized evaluation property key- \(property.key)")
+                    }
+                }
+                
+                let newEval = Evaluation(imageString: imageString, targetUserName: targetUserName)
+                
+            }
+        })
     }
     
 }
