@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class GamesViewController: UIViewController {
     var me: Player = Me!

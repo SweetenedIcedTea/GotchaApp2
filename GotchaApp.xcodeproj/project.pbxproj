@@ -14,6 +14,7 @@
 		8733133B209774BA00B1D46E /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87331338209774BA00B1D46E /* Poll.swift */; };
 		8733133C209774BA00B1D46E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87331339209774BA00B1D46E /* Server.swift */; };
 		8733133D209774BA00B1D46E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733133A209774BA00B1D46E /* Player.swift */; };
+		8797927420AC9EFB00BA0453 /* AddGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8797927320AC9EFB00BA0453 /* AddGamesView.swift */; };
 		87CA9AF6209A262D003C11E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CA9AF5209A262D003C11E6 /* LoginViewController.swift */; };
 		87CA9AF8209A281D003C11E6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CA9AF7209A281D003C11E6 /* RegisterViewController.swift */; };
 		87DB4B5F203756AA003622F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB4B5E203756AA003622F5 /* AppDelegate.swift */; };
@@ -60,6 +61,7 @@
 		87331338209774BA00B1D46E /* Poll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Poll.swift; path = GotchaApp/GotchaAppBaseModel/Poll.swift; sourceTree = SOURCE_ROOT; };
 		87331339209774BA00B1D46E /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Server.swift; path = GotchaApp/GotchaAppBaseModel/Server.swift; sourceTree = SOURCE_ROOT; };
 		8733133A209774BA00B1D46E /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = GotchaApp/GotchaAppBaseModel/Player.swift; sourceTree = SOURCE_ROOT; };
+		8797927320AC9EFB00BA0453 /* AddGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGamesView.swift; sourceTree = "<group>"; };
 		87CA9AF5209A262D003C11E6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		87CA9AF7209A281D003C11E6 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		87DB4B5B203756AA003622F5 /* GotchaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GotchaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +162,7 @@
 				87CA9AF5209A262D003C11E6 /* LoginViewController.swift */,
 				885A1BB22090F55C0074ACF6 /* GamesViewController.swift */,
 				87CA9AF7209A281D003C11E6 /* RegisterViewController.swift */,
+				8797927320AC9EFB00BA0453 /* AddGamesView.swift */,
 				8876D6712095087E00D2C436 /* Camera */,
 				885A1BB62090F59D0074ACF6 /* ShopViewController.swift */,
 				885A1BB82090F5B70074ACF6 /* EvaluationsViewController.swift */,
@@ -415,6 +418,7 @@
 				873313352097749D00B1D46E /* Game.swift in Sources */,
 				8870E83120ABC07F004A25E6 /* Me.swift in Sources */,
 				873313332097748E00B1D46E /* Errors.swift in Sources */,
+				8797927420AC9EFB00BA0453 /* AddGamesView.swift in Sources */,
 				8876D66C2094FA8700D2C436 /* TargetingView.swift in Sources */,
 				87CA9AF8209A281D003C11E6 /* RegisterViewController.swift in Sources */,
 				8876D66E2094FAAC00D2C436 /* FocusingImageView.swift in Sources */,

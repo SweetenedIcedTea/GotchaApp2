@@ -30,6 +30,13 @@ class Player: Hashable, CustomStringConvertible{
         self.points = points
     }
     
+    init(name: String, username: String, points: Int){
+        self.name = name
+        self.username = username
+        password = 0
+        self.points = points
+    }
+    
     func addPoints(_ add: Int){
         points += add
     }

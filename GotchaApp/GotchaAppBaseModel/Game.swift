@@ -12,11 +12,10 @@ class Game: Hashable, CustomStringConvertible{
     var players = [Player]()
     var admin: Player
     var name: String
-    var code: String
     var isWinner: Bool = false
     
     var hashValue: Int {
-        return(admin.hashValue &* code.hashValue &* name.hashValue &* 88993)
+        return(admin.hashValue &* name.hashValue &* 88993)
     }
     
     var description: String{
@@ -24,15 +23,13 @@ class Game: Hashable, CustomStringConvertible{
     }
     
     static func == (lhs: Game, rhs: Game) -> Bool {
-        return lhs.admin == rhs.admin && lhs.code == rhs.code && lhs.name == rhs.name
+        return lhs.admin == rhs.admin && lhs.name == rhs.name
     }
     
     init(admin: Player, name: String){
         self.admin = admin
         players.append(admin)
         self.name = name
-        code = "xd"
-        code = generateCode()
     }
     
     func generateCode()-> String{
@@ -64,5 +61,12 @@ class Game: Hashable, CustomStringConvertible{
     
     func startGame(){
         print("Game starting!")
+    }
+    
+    func toAnyObject()-> Any{
+        return([
+            "name": name,
+            "admin" : admin.toAnyObject()
+            ])
     }
 }
