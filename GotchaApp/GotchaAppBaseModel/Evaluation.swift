@@ -9,14 +9,12 @@
 import Foundation
 import UIKit
 
-class Evaluation: CustomStringConvertible{
-    var imageString: String
+class Evaluation: CustomStringConvertible, Equatable{
     var targetUserName: String
     var numVotes: Int
     var rating: Double
     
-    init(imageString: String, targetUserName: String){
-        self.imageString = imageString
+    init(targetUserName: String){
         self.targetUserName = targetUserName
         numVotes = 0
         rating = 0
@@ -38,11 +36,17 @@ class Evaluation: CustomStringConvertible{
     
     func toAnyObject()-> Any{
         return([
-            "imageString": imageString,
             "targetUserName": targetUserName,
             "numVotes": numVotes,
             "rating" : rating
             ])
+    }
+    
+    static func == (eval1: Evaluation, eval2: Evaluation) -> Bool {
+        return
+            eval1.targetUserName == eval2.targetUserName &&
+            eval1.numVotes == eval2.numVotes &&
+            eval1.rating == eval2.rating
     }
     
 }
