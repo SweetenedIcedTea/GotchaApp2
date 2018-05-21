@@ -10,9 +10,13 @@ import UIKit
 
 class MenuViewController: UIViewController {
     var me: Player = Me!
+    
+    @IBOutlet var nameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        nameLabel.text = me.username
     }
     
     override func didReceiveMemoryWarning() {

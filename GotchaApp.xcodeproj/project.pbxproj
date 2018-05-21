@@ -30,6 +30,7 @@
 		885A1BB92090F5B70074ACF6 /* EvaluationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885A1BB82090F5B70074ACF6 /* EvaluationsViewController.swift */; };
 		885A1BC12093B70E0074ACF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 885A1BC02093B70E0074ACF6 /* GoogleService-Info.plist */; };
 		8870E83120ABC07F004A25E6 /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8870E83020ABC07F004A25E6 /* Me.swift */; };
+		8870E83320AC9FC4004A25E6 /* EvaluationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8870E83220AC9FC4004A25E6 /* EvaluationCell.swift */; };
 		8876D66A2094F86800D2C436 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876D6692094F86800D2C436 /* SendViewController.swift */; };
 		8876D66C2094FA8700D2C436 /* TargetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876D66B2094FA8700D2C436 /* TargetingView.swift */; };
 		8876D66E2094FAAC00D2C436 /* FocusingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876D66D2094FAAC00D2C436 /* FocusingImageView.swift */; };
@@ -83,6 +84,7 @@
 		885A1BB82090F5B70074ACF6 /* EvaluationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationsViewController.swift; sourceTree = "<group>"; };
 		885A1BC02093B70E0074ACF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8870E83020ABC07F004A25E6 /* Me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
+		8870E83220AC9FC4004A25E6 /* EvaluationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationCell.swift; sourceTree = "<group>"; };
 		8876D6692094F86800D2C436 /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		8876D66B2094FA8700D2C436 /* TargetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetingView.swift; sourceTree = "<group>"; };
 		8876D66D2094FAAC00D2C436 /* FocusingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusingImageView.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				8876D6712095087E00D2C436 /* Camera */,
 				885A1BB62090F59D0074ACF6 /* ShopViewController.swift */,
 				885A1BB82090F5B70074ACF6 /* EvaluationsViewController.swift */,
+				8870E83220AC9FC4004A25E6 /* EvaluationCell.swift */,
 			);
 			path = GotchaApp;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				885A1BB92090F5B70074ACF6 /* EvaluationsViewController.swift in Sources */,
 				87CA9AF6209A262D003C11E6 /* LoginViewController.swift in Sources */,
 				885A1BB72090F59D0074ACF6 /* ShopViewController.swift in Sources */,
+				8870E83320AC9FC4004A25E6 /* EvaluationCell.swift in Sources */,
 				885A1BB32090F55C0074ACF6 /* GamesViewController.swift in Sources */,
 				8876D66A2094F86800D2C436 /* SendViewController.swift in Sources */,
 				88E5BD5F20A26D7D009ED0AB /* Evaluation.swift in Sources */,
