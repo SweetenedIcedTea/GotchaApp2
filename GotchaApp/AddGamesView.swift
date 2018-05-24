@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 
 class AddGamesViewController: UIViewController {
-    var me = Player(name: "test", username: "test", points: 0)
+    var me = Me!
     let ref = Database.database().reference(withPath: "games")
     
     @IBOutlet var nameTextField: UITextField!

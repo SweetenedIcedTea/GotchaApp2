@@ -23,8 +23,9 @@
 		87DB4B69203756AA003622F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DB4B67203756AA003622F5 /* LaunchScreen.storyboard */; };
 		87DB4B74203756AB003622F5 /* GotchaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB4B73203756AB003622F5 /* GotchaAppTests.swift */; };
 		87DB4B7F203756AB003622F5 /* GotchaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB4B7E203756AB003622F5 /* GotchaAppUITests.swift */; };
+		87FB826820B672B700076216 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB826720B672B700076216 /* GameCell.swift */; };
 		885A1BB12090F5070074ACF6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885A1BB02090F5070074ACF6 /* MenuViewController.swift */; };
-		885A1BB32090F55C0074ACF6 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885A1BB22090F55C0074ACF6 /* GamesViewController.swift */; };
+		885A1BB32090F55C0074ACF6 /* GamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885A1BB22090F55C0074ACF6 /* GamesTableViewController.swift */; };
 		885A1BB52090F57D0074ACF6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885A1BB42090F57D0074ACF6 /* CameraViewController.swift */; };
 		885A1BB72090F59D0074ACF6 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885A1BB62090F59D0074ACF6 /* ShopViewController.swift */; };
 		885A1BB92090F5B70074ACF6 /* EvaluationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885A1BB82090F5B70074ACF6 /* EvaluationsViewController.swift */; };
@@ -77,8 +78,9 @@
 		87DB4B7A203756AB003622F5 /* GotchaAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GotchaAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87DB4B7E203756AB003622F5 /* GotchaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotchaAppUITests.swift; sourceTree = "<group>"; };
 		87DB4B80203756AB003622F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87FB826720B672B700076216 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		885A1BB02090F5070074ACF6 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		885A1BB22090F55C0074ACF6 /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
+		885A1BB22090F55C0074ACF6 /* GamesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesTableViewController.swift; sourceTree = "<group>"; };
 		885A1BB42090F57D0074ACF6 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		885A1BB62090F59D0074ACF6 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		885A1BB82090F5B70074ACF6 /* EvaluationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationsViewController.swift; sourceTree = "<group>"; };
@@ -162,7 +164,7 @@
 				8869D6A22097766C0032558D /* GotchaAppBaseModel */,
 				885A1BB02090F5070074ACF6 /* MenuViewController.swift */,
 				87CA9AF5209A262D003C11E6 /* LoginViewController.swift */,
-				885A1BB22090F55C0074ACF6 /* GamesViewController.swift */,
+				885A1BB22090F55C0074ACF6 /* GamesTableViewController.swift */,
 				87CA9AF7209A281D003C11E6 /* RegisterViewController.swift */,
 				8797927320AC9EFB00BA0453 /* AddGamesView.swift */,
 				8876D6712095087E00D2C436 /* Camera */,
@@ -202,6 +204,7 @@
 				873313322097748E00B1D46E /* Errors.swift */,
 				88E5BD5E20A26D7D009ED0AB /* Evaluation.swift */,
 				8870E83020ABC07F004A25E6 /* Me.swift */,
+				87FB826720B672B700076216 /* GameCell.swift */,
 			);
 			path = GotchaAppBaseModel;
 			sourceTree = "<group>";
@@ -410,12 +413,13 @@
 				8733133C209774BA00B1D46E /* Server.swift in Sources */,
 				87DB4B5F203756AA003622F5 /* AppDelegate.swift in Sources */,
 				87331337209774AE00B1D46E /* Image.swift in Sources */,
+				87FB826820B672B700076216 /* GameCell.swift in Sources */,
 				885A1BB52090F57D0074ACF6 /* CameraViewController.swift in Sources */,
 				885A1BB92090F5B70074ACF6 /* EvaluationsViewController.swift in Sources */,
 				87CA9AF6209A262D003C11E6 /* LoginViewController.swift in Sources */,
 				885A1BB72090F59D0074ACF6 /* ShopViewController.swift in Sources */,
 				8870E83320AC9FC4004A25E6 /* EvaluationCell.swift in Sources */,
-				885A1BB32090F55C0074ACF6 /* GamesViewController.swift in Sources */,
+				885A1BB32090F55C0074ACF6 /* GamesTableViewController.swift in Sources */,
 				8876D66A2094F86800D2C436 /* SendViewController.swift in Sources */,
 				88E5BD5F20A26D7D009ED0AB /* Evaluation.swift in Sources */,
 				8733133B209774BA00B1D46E /* Poll.swift in Sources */,
