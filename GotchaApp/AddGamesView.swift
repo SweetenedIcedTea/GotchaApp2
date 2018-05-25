@@ -16,6 +16,10 @@ class AddGamesViewController: UIViewController {
     
     @IBOutlet var nameTextField: UITextField!
     
+    @IBAction func tapRecognized(_ sender: UITapGestureRecognizer) {
+        nameTextField.resignFirstResponder()
+    }
+    
     @IBAction func addGame(_ sender: UIButton) {
         print("Register Pressed")
         let nameText = nameTextField.text
@@ -24,7 +28,7 @@ class AddGamesViewController: UIViewController {
         let newGame = Game(admin: me, name: nameText!)
         let newGameRef = self.ref.child(nameText!.lowercased())
         newGameRef.setValue(newGame.toAnyObject())
-        self.performSegue(withIdentifier: "AddGame", sender: nil)
+        self.performSegue(withIdentifier: "unwindToGamesSegue", sender: nil)
     }
     
     override func viewDidLoad() {

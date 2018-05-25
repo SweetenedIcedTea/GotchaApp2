@@ -15,14 +15,17 @@ class EvaluationsViewController: UITableViewController {
     let storage = Storage.storage()
     var evaluations = [Evaluation]()
     var images = [UIImage]()
+    var imagesLoaded: Bool = false {
+        didSet{
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.rowHeight = 130
         tableView.estimatedRowHeight = 130
-        
-        getEvaluations()
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,6 +40,7 @@ class EvaluationsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         print("EvaluationsViewController Appearing")
         getEvaluations()
+        getImages()
     }
     
     func getEvaluations(){
@@ -72,29 +76,45 @@ class EvaluationsViewController: UITableViewController {
                     
                 }
                 print("evaluations reloaded")
+                self.tableView.reloadData()
             }
             
-            
-//            let pathReference = self.storage.reference(withPath: "images/evalFor\(targetUserName).png")
-            let pathReference = self.storage.reference(withPath: "images/eval.png")
-            
-            pathReference.getData(maxSize: 15 * 1024 * 1024, completion: { (data, error) in
-                if let error = error{
-                    print("error loading image:")
-                    print(error)
-                } else {
-                    if let image = UIImage(data: data!){
-                        if !self.images.contains(image){
-                            
-                            self.images.append(image)
-                            print("image appended")
-                            self.tableView.reloadData()
-                        }
+        })
+    }
+    
+    func getImages(){
+        //            let pathReference = self.storage.reference(withPath: "images/evalFor\(targetUserName).png")
+        let pathReference = self.storage.reference(withPath: "images/eval.png")
+        
+        pathReference.getData(maxSize: 15 * 1024 * 1024, completion: { (data, error) in
+            if let error = error{
+                print("error loading image:")
+                print(error)
+            } else {
+                if let image = UIImage(data: data!){
+                    if !self.images.contains(image){
+                        
+                        self.images.append(image)
+                        print("image appended")
+                        print(self.images)
+                        self.imagesLoaded = true
                     }
                 }
-            })
-            
+            }
         })
+    }
+    
+    func correctedImage(_ image: UIImage) -> UIImage{
+        let reorientedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .right)
+        
+        //crop image
+        let width = reorientedImage.cgImage!.width
+        let height = reorientedImage.cgImage!.height
+        //true size is 720x720
+        let cropRegion = CGRect(origin: CGPoint(x: (width/2)-500, y: (height/2)-500), size: CGSize(width: 1000, height: 1000))
+        let croppedCGImage = reorientedImage.cgImage?.cropping(to: cropRegion)
+        
+        return UIImage(cgImage: croppedCGImage!, scale: 1.0, orientation: .right)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,18 +124,13 @@ class EvaluationsViewController: UITableViewController {
         //get the evaluation at indexPath.row
         let eval = evaluations[indexPath.row]
         
-        var image = images[indexPath.row]
-        //reorient image
-        image = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .right)
+        var image: UIImage? = nil
         
-        //crop image
-        let width = image.cgImage!.width
-        let height = image.cgImage!.height
-            //true size is 720x720
-        let cropRegion = CGRect(origin: CGPoint(x: (width/2)-500, y: (height/2)-500), size: CGSize(width: 1000, height: 1000))
-        let croppedCGImage = image.cgImage?.cropping(to: cropRegion)
-
-        image = UIImage(cgImage: croppedCGImage!, scale: 1.0, orientation: .right)
+        if imagesLoaded == true {
+            image = correctedImage(images[indexPath.row])
+        } else {
+            print("images not loaded")
+        }
         
         //Configure the cell
         cell.nameLabel.text = eval.targetUserName

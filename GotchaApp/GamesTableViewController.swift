@@ -71,4 +71,8 @@ class GamesTableViewController: UITableViewController {
         print("Added \(me.username) to the game \(gameItem.name)")
     }
     
+    @IBAction func unwindToGames(unwindSegue: UIStoryboardSegue){
+        print("unwind to Games triggered")
+    }
+    
 }
