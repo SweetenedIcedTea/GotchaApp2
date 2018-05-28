@@ -15,6 +15,8 @@ class SendViewController: UIViewController{
     let ref = Database.database().reference(withPath: "all-evaluations")
 //    let imagesRef = Storage.storage().reference().child("images/eval.png")
     let storageRef = Storage.storage().reference()
+    var games = [Game]()
+    
     
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var visibilityBackground: UIView!
@@ -24,6 +26,12 @@ class SendViewController: UIViewController{
     @IBAction func yesButtonTapped(){
         print("Yes button was tapped")
         
+        //sendImage()
+        presentTargetSelectingAlert()
+        
+    }
+    
+    func sendImage(){
         //Encoding image
         let loadedImageData = UIImagePNGRepresentation(imageView.image!)!
         
@@ -55,25 +63,64 @@ class SendViewController: UIViewController{
                 }
             }
         }
-        
     }
     
-    func presentTargetSelectingAlert(str64: String){
-        let alert = UIAlertController(title: "Please choose your target", message: nil, preferredStyle: .alert)
+    func presentTargetSelectingAlert(){
         
-        for target in me.targets{
-            let title = target.username
-            let action = UIAlertAction(title: title, style: .default) { (_) in
-                let newEvaluation = Evaluation(targetUserName: title)
+        if games.count == 0{
+            let noGamesAlert = UIAlertController(title: "Join a game before trying to eliminate players", message: nil, preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "OK", style: .default) { (_) in
+                self.performSegue(withIdentifier: "backToCamSegue", sender: nil)
                 
-                let newEvalRef = self.ref.child("EvalFor\(title)")
-                newEvalRef.setValue(newEvaluation.toAnyObject())
-                //instead of the above three lines, do the code in yesButtonTapped to upload the image file with the correct path name
             }
-            alert.addAction(action)
+            noGamesAlert.addAction(action)
+            present(noGamesAlert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Please choose your target", message: nil, preferredStyle: .alert)
+            
+            for game in games{
+                let players = game.players
+                let myIndex = players.index(of: me)!
+                var myTarget: Player? = nil
+                if players.count == myIndex+1{
+                    myTarget = players[0]
+                } else {
+                    myTarget = players[myIndex+1]
+                }
+                let title = myTarget!.username
+                let action = UIAlertAction(title: title, style: .default) { (_) in
+                    let newEvaluation = Evaluation(targetUserName: title)
+                    
+                    let newEvalRef = self.ref.child("EvalFor\(title)")
+                    newEvalRef.setValue(newEvaluation.toAnyObject())
+                    //instead of the above three lines, do the code in yesButtonTapped to upload the image file with the correct path name
+                    self.sendImage()
+                    self.performSegue(withIdentifier: "backToCamSegue", sender: nil)
+                    
+                }
+                alert.addAction(action)
+            }
+            
+//            for target in me.targets{
+//                let title = myTarget!.username
+//                let action = UIAlertAction(title: title, style: .default) { (_) in
+//                    let newEvaluation = Evaluation(targetUserName: title)
+//
+//                    let newEvalRef = self.ref.child("EvalFor\(title)")
+//                    newEvalRef.setValue(newEvaluation.toAnyObject())
+//                    //instead of the above three lines, do the code in yesButtonTapped to upload the image file with the correct path name
+//                    self.sendImage()
+//                    self.performSegue(withIdentifier: "backToCamSegue", sender: nil)
+//
+//                }
+//                alert.addAction(action)
+//            }
+            
+            present(alert, animated: true, completion: nil)
+            
         }
         
-        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func noButtonTapped(){
@@ -96,6 +143,26 @@ class SendViewController: UIViewController{
         gradient.colors = [dark, clear, clear, light, dark]
         
         visibilityBackground.layer.insertSublayer(gradient, at: 0)
+    }
+    
+    func getGames(){
+        let gamesref = Database.database().reference(withPath: "games")
+        gamesref.observe(.value, with: { snapshot in
+            var newGames: [Game] = []
+            
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let gameItem = Game(snapshot: snapshot) {
+                    
+                    if gameItem.players.contains(self.me){
+                        newGames.append(gameItem)
+                    }
+                    
+                }
+            }
+            
+            self.games = newGames
+        })
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
