@@ -39,6 +39,7 @@ class EvaluationsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         print("EvaluationsViewController Appearing")
+        imagesLoaded = false
         getEvaluations()
         getImages()
     }
@@ -84,6 +85,7 @@ class EvaluationsViewController: UITableViewController {
     
     func getImages(){
         //            let pathReference = self.storage.reference(withPath: "images/evalFor\(targetUserName).png")
+        self.images = []
         let pathReference = self.storage.reference(withPath: "images/eval.png")
         
         pathReference.getData(maxSize: 15 * 1024 * 1024, completion: { (data, error) in
@@ -92,13 +94,10 @@ class EvaluationsViewController: UITableViewController {
                 print(error)
             } else {
                 if let image = UIImage(data: data!){
-                    if !self.images.contains(image){
-                        
-                        self.images.append(image)
-                        print("image appended")
-                        print(self.images)
-                        self.imagesLoaded = true
-                    }
+                    self.images.append(image)
+                    print("image appended")
+                    print(self.images)
+                    self.imagesLoaded = true
                 }
             }
         })
@@ -144,5 +143,30 @@ class EvaluationsViewController: UITableViewController {
         return evaluations.count
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let id = segue.identifier!
+        switch id{
+        case "showSingleVC":
+            if let row = tableView.indexPathForSelectedRow?.row {
+//                let eval = evaluations[row]
+                
+                if images.count > row {
+                    let img = images[row]
+                    
+                    let reorientedImg = UIImage(cgImage: img.cgImage!, scale: 1.0, orientation: .right)
+                    let SEVC = segue.destination as! SingleEvalViewController
+                    SEVC.image = reorientedImg
+                }
+                
+            }
+            
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
+    }
+    
+    @IBAction func unwindToEvaluations(unwindSegue: UIStoryboardSegue){
+        print("unwind to Evals triggered")
+    }
     
 }

@@ -58,6 +58,7 @@ class LoginViewController: UIViewController,  UITextFieldDelegate {
                 let points = value?["points"] as? Int ?? -420
                 print("\(username), \(name), \(points)")
                 Me = Player(name: name, username: username, pass: passText, points: points)
+                //self.getMyTargets()
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             }
             
@@ -67,6 +68,45 @@ class LoginViewController: UIViewController,  UITextFieldDelegate {
         }
         
     }
+    
+    
+    func getMyTargets(){
+        let gamesref = Database.database().reference(withPath: "games")
+        var myGames = [Game]()
+        gamesref.observe(.value, with: { snapshot in
+            var newGames: [Game] = []
+            
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let gameItem = Game(snapshot: snapshot) {
+                    
+                    if gameItem.players.contains(Me!){
+                        newGames.append(gameItem)
+                    }
+                    
+                }
+            }
+            
+            myGames = newGames
+        })
+        
+        var myTargets = [Player]()
+        
+        for game in myGames{
+            let players = game.players
+            let myIndex = players.index(of: Me!)!
+            var myTarget: Player? = nil
+            if players.count == myIndex+1{
+                myTarget = players[0]
+            } else {
+                myTarget = players[myIndex+1]
+            }
+            myTargets.append(myTarget!)
+        }
+        
+        Me!.targets = myTargets
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
