@@ -70,6 +70,6 @@ class Player: Hashable, CustomStringConvertible{
 
 extension Player: Equatable{
     static func == (p1: Player, p2: Player) -> Bool {
-        return p1.name == p2.name && p1.username == p2.username && p1.password == p2.password
+        return p1.name == p2.name && p1.username == p2.username
     }
 }

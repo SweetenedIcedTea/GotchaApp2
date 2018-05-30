@@ -26,7 +26,7 @@ class AddGamesViewController: UIViewController {
         print("Name: \(nameText!)")
         
         let newGame = Game(admin: me, name: nameText!)
-        let newGameRef = self.ref.child(nameText!.lowercased())
+        let newGameRef = self.ref.child(nameText!)
         newGameRef.setValue(newGame.toAnyObject())
         self.performSegue(withIdentifier: "unwindToGamesSegue", sender: nil)
     }

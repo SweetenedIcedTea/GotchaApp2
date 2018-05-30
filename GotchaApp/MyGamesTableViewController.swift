@@ -1,15 +1,16 @@
 //
-//  GamesViewController.swift
+//  MyGamesTableViewController.swift
 //  GotchaApp
 //
-//  Created by Lin, Kevin K. on 4/25/18.
+//  Created by Ethan Zhang on 5/29/18.
 //  Copyright © 2018 NepinNep. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import Firebase
 
-class GamesTableViewController: UITableViewController {
+class MyGamesTableViewController: UITableViewController {
     var me: Player = Me!
     var ref : DatabaseReference!
     var games = [Game]()
@@ -23,7 +24,14 @@ class GamesTableViewController: UITableViewController {
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let gameItem = Game(snapshot: snapshot) {
-                    newGames.append(gameItem)
+                    if gameItem.players.contains(self.me) && gameItem.admin != self.me{
+                        newGames.append(gameItem)
+                        print("Added \(gameItem.name)")
+                    }
+                    if gameItem.admin == self.me{
+                        newGames.append(gameItem)
+                        print("Added \(gameItem.name)")
+                    }
                 }
             }
             
@@ -63,12 +71,15 @@ class GamesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         let gameItem = games[indexPath.row]
-        ref = Database.database().reference(withPath: "games").child(gameItem.name).child("players")
-        ref.updateChildValues([
-            me.name: me.toAnyObject()
-            ])
-        
-        print("Added \(me.username) to the game \(gameItem.name)")
+        ref = Database.database().reference(withPath: "games").child(gameItem.name)
+        if gameItem.admin == self.me{
+            ref.updateChildValues([
+                "isStarted": true
+                ])
+            print("\(gameItem.name) has been started")
+        } else {
+        print("\(self.me.name) is not an admin of this game")
+        }
     }
     
     @IBAction func unwindToGames(unwindSegue: UIStoryboardSegue){
@@ -76,3 +87,4 @@ class GamesTableViewController: UITableViewController {
     }
     
 }
+

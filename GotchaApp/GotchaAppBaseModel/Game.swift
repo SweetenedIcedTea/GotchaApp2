@@ -14,6 +14,7 @@ class Game: Hashable, CustomStringConvertible{
     var admin: Player
     var name: String
     var isWinner: Bool = false
+    var isStarted: Bool = false
     
     var hashValue: Int {
         return(admin.hashValue &* name.hashValue &* 88993)
@@ -95,7 +96,8 @@ class Game: Hashable, CustomStringConvertible{
         return([
             "name": name,
             "admin" : admin.toAnyObject(),
-            "players" : playersToAnyObject(players)
+            "players" : playersToAnyObject(players),
+            "isStarted" : isStarted
             ])
     }
     
@@ -114,4 +116,5 @@ class Game: Hashable, CustomStringConvertible{
         }
         return(result)
     }
+        
 }
