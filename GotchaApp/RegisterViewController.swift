@@ -33,7 +33,7 @@ class RegisterViewController: UIViewController,  UITextFieldDelegate{
         let newPlayer = Player(name: nameText!, username: userText!, pass: passText!, points: points)
         let newPlayerRef = self.ref.child(userText!.lowercased())
         newPlayerRef.setValue(newPlayer.toAnyObject())
-        
+        performSegue(withIdentifier: "segueToLogin", sender: nil)
     }
     
     
