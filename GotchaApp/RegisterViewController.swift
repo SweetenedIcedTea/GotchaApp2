@@ -16,6 +16,10 @@ class RegisterViewController: UIViewController,  UITextFieldDelegate{
     @IBOutlet var userTextField: UITextField!
     @IBOutlet var passTextField: UITextField!
     
+    @IBOutlet var nameErrorLabel: UILabel!
+    @IBOutlet var usernameErrorLabel: UILabel!
+    @IBOutlet var passwordErrorLabel: UILabel!
+    
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         nameTextField.resignFirstResponder()
         userTextField.resignFirstResponder()
@@ -27,13 +31,41 @@ class RegisterViewController: UIViewController,  UITextFieldDelegate{
         let nameText = nameTextField.text
         let userText = userTextField.text
         let passText = passTextField.text
+        var allFieldsAreFilled = true
         let points = 0
+        
+        if nameTextField.text == " " || nameTextField.text == ""{
+            allFieldsAreFilled = false
+            nameErrorLabel.text = "Please enter your name"
+        } else {
+            nameErrorLabel.text = ""
+        }
+        if userTextField.text == " " || userTextField.text == ""{
+            allFieldsAreFilled = false
+            usernameErrorLabel.text = "Please enter a username"
+        } else {
+            usernameErrorLabel.text = ""
+        }
+        if passTextField.text == " " || passTextField.text == ""{
+            allFieldsAreFilled = false
+            passwordErrorLabel.text = "Please enter a password"
+        } else {
+            passwordErrorLabel.text = ""
+        }
+        
+        if allFieldsAreFilled == false{
+            return
+        }
+        
         print("Name: \(nameText!) | Username: \(userText!) | Password: \(passText!)")
         
         let newPlayer = Player(name: nameText!, username: userText!, pass: passText!, points: points)
         let newPlayerRef = self.ref.child(userText!.lowercased())
         newPlayerRef.setValue(newPlayer.toAnyObject())
-        performSegue(withIdentifier: "segueToLogin", sender: nil)
+
+        
+        self.performSegue(withIdentifier: "registeredSegue", sender: nil)
+
     }
     
     
@@ -41,6 +73,9 @@ class RegisterViewController: UIViewController,  UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        nameErrorLabel.text = ""
+        usernameErrorLabel.text = ""
+        passwordErrorLabel.text = ""
     }
     
     override func didReceiveMemoryWarning() {

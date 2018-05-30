@@ -58,7 +58,7 @@ class LoginViewController: UIViewController,  UITextFieldDelegate {
                 let points = value?["points"] as? Int ?? -420
                 print("\(username), \(name), \(points)")
                 Me = Player(name: name, username: username, pass: passText, points: points)
-                //self.getMyTargets()
+                self.getMyTargets()
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             }
             
@@ -79,16 +79,20 @@ class LoginViewController: UIViewController,  UITextFieldDelegate {
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let gameItem = Game(snapshot: snapshot) {
-                    
-                    if gameItem.players.contains(Me!){
+                    if gameItem.players.contains(Me!) && gameItem.admin != Me!{
                         newGames.append(gameItem)
+                        print("Added \(gameItem.name)")
                     }
-                    
+                    if gameItem.admin == Me!{
+                        newGames.append(gameItem)
+                        print("Added \(gameItem.name)")
+                    }
                 }
             }
             
             myGames = newGames
         })
+        print(myGames)
         
         var myTargets = [Player]()
         
@@ -105,6 +109,8 @@ class LoginViewController: UIViewController,  UITextFieldDelegate {
         }
         
         Me!.targets = myTargets
+        
+        print(myTargets)
     }
     
     override func didReceiveMemoryWarning() {

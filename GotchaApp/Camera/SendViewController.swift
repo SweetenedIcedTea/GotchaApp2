@@ -26,7 +26,7 @@ class SendViewController: UIViewController{
     @IBAction func yesButtonTapped(){
         print("Yes button was tapped")
         
-        //sendImage()
+//        sendImage()
         presentTargetSelectingAlert()
         
     }
@@ -35,8 +35,8 @@ class SendViewController: UIViewController{
         //Encoding image
         let loadedImageData = UIImagePNGRepresentation(imageView.image!)!
         
-        //let imageRef = storageRef.child("images/evalFor\(title).png")
-        let imageRef = storageRef.child("images/eval.png")
+        let imageRef = storageRef.child("images/evalFor\(String(describing: title)).png")
+//        let imageRef = storageRef.child("images/eval.png")
         let upLoadTask = imageRef.putData(loadedImageData)
         
         upLoadTask.observe(.success) { snapshot in
@@ -90,7 +90,9 @@ class SendViewController: UIViewController{
                 }
                 let title = myTarget!.username
                 let action = UIAlertAction(title: title, style: .default) { (_) in
-                    let newEvaluation = Evaluation(targetUserName: title)
+                    var date = Date()
+                    date.addTimeInterval(86400)
+                    let newEvaluation = Evaluation(targetUserName: title, exp: date)
                     
                     let newEvalRef = self.ref.child("EvalFor\(title)")
                     newEvalRef.setValue(newEvaluation.toAnyObject())
@@ -102,20 +104,8 @@ class SendViewController: UIViewController{
                 alert.addAction(action)
             }
             
-//            for target in me.targets{
-//                let title = myTarget!.username
-//                let action = UIAlertAction(title: title, style: .default) { (_) in
-//                    let newEvaluation = Evaluation(targetUserName: title)
-//
-//                    let newEvalRef = self.ref.child("EvalFor\(title)")
-//                    newEvalRef.setValue(newEvaluation.toAnyObject())
-//                    //instead of the above three lines, do the code in yesButtonTapped to upload the image file with the correct path name
-//                    self.sendImage()
-//                    self.performSegue(withIdentifier: "backToCamSegue", sender: nil)
-//
-//                }
-//                alert.addAction(action)
-//            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            alert.addAction(cancelAction)
             
             present(alert, animated: true, completion: nil)
             
@@ -143,6 +133,8 @@ class SendViewController: UIViewController{
         gradient.colors = [dark, clear, clear, light, dark]
         
         visibilityBackground.layer.insertSublayer(gradient, at: 0)
+        
+        getGames()
     }
     
     func getGames(){

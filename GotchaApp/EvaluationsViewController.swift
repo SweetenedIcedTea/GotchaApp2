@@ -54,6 +54,7 @@ class EvaluationsViewController: UITableViewController {
                 var numVotes = 0
                 var rating = 0.0
                 var targetUserName = ""
+                var exp = Date()
                 
                 for property in evalProperty!{
                     switch property.key{
@@ -63,12 +64,14 @@ class EvaluationsViewController: UITableViewController {
                         targetUserName = property.value as! String
                     case "rating":
                         rating = property.value as! Double
+                    case "experation":
+                        exp = Date(timeIntervalSince1970: (property.value as! TimeInterval))
                     default:
                         print("error: unrecognized evaluation property key- \(property.key)")
                     }
                 }
                 
-                let newEval = Evaluation(targetUserName: targetUserName)
+                let newEval = Evaluation(targetUserName: targetUserName, exp: exp)
                 newEval.numVotes = numVotes
                 newEval.rating = rating
                 
@@ -133,7 +136,7 @@ class EvaluationsViewController: UITableViewController {
         
         //Configure the cell
         cell.nameLabel.text = eval.targetUserName
-        cell.timeLabel.text = "0.00"
+        cell.timeLabel.text = Date(timeIntervalSince1970: eval.toInterval(eval.experation)).timeIntervalSince(Date()).description
         cell.targetImageView.image = image
         
         return cell
@@ -148,7 +151,7 @@ class EvaluationsViewController: UITableViewController {
         switch id{
         case "showSingleVC":
             if let row = tableView.indexPathForSelectedRow?.row {
-//                let eval = evaluations[row]
+                
                 
                 if images.count > row {
                     let img = images[row]
@@ -156,6 +159,9 @@ class EvaluationsViewController: UITableViewController {
                     let reorientedImg = UIImage(cgImage: img.cgImage!, scale: 1.0, orientation: .right)
                     let SEVC = segue.destination as! SingleEvalViewController
                     SEVC.image = reorientedImg
+                    
+                    let eval = evaluations[row]
+                    SEVC.evaluation = eval
                 }
                 
             }

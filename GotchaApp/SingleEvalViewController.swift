@@ -7,18 +7,30 @@
 //
 
 import UIKit
+import Firebase
 
 class SingleEvalViewController: UIViewController {
+    let ref = Database.database().reference(withPath: "all-evaluations")
     var me: Player = Me!
+    var evaluation: Evaluation!
     
     @IBOutlet var imageView: UIImageView!
     var image: UIImage!
+    
     @IBOutlet var questionLabel: UILabel!
     
     @IBAction func yesButtonTapped(_ sender: Any) {
+        evaluation.voteYes()
+        let newEvalRef = self.ref.child("EvalFor\(evaluation.targetUserName)")
+        newEvalRef.setValue(evaluation.toAnyObject())
     }
+    
     @IBAction func noButtonTapped(_ sender: Any) {
+        evaluation.voteNo()
+        let newEvalRef = self.ref.child("EvalFor\(evaluation.targetUserName)")
+        newEvalRef.setValue(evaluation.toAnyObject())
     }
+    
     @IBAction func cantTellTapped(_ sender: Any) {
     }
     
