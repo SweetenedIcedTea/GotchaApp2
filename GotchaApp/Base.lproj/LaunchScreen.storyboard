@@ -19,13 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gotcha!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wan-R1-S4z">
-                                <rect key="frame" x="106" y="284.5" width="163" height="58"/>
+                                <rect key="frame" x="106" y="254.5" width="163" height="58"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poa-nd-v1N">
-                                <rect key="frame" x="149.5" y="352.5" width="75" height="21"/>
+                                <rect key="frame" x="149.5" y="322.5" width="75" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,7 +36,7 @@
                             <constraint firstItem="poa-nd-v1N" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8XI-oS-XXE"/>
                             <constraint firstItem="poa-nd-v1N" firstAttribute="top" secondItem="wan-R1-S4z" secondAttribute="bottom" constant="10" id="EOi-Um-fvM"/>
                             <constraint firstItem="wan-R1-S4z" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="H5o-Na-7Ln"/>
-                            <constraint firstItem="wan-R1-S4z" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-30" id="bxh-ho-Ffb"/>
+                            <constraint firstItem="wan-R1-S4z" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-60" id="bxh-ho-Ffb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

@@ -13,11 +13,13 @@ class Evaluation: CustomStringConvertible, Equatable{
     var targetUserName: String
     var numVotes: Int
     var rating: Double
+    var experation: Date
     
-    init(targetUserName: String){
+    init(targetUserName: String, exp: Date){
         self.targetUserName = targetUserName
         numVotes = 0
         rating = 0
+        self.experation = exp
     }
     
     func voteYes(){
@@ -34,11 +36,16 @@ class Evaluation: CustomStringConvertible, Equatable{
         return "Evaluation for target: \(targetUserName)"
     }
     
+    func toInterval(_ time: Date)-> TimeInterval{
+        return time.timeIntervalSince1970
+    }
+    
     func toAnyObject()-> Any{
         return([
             "targetUserName": targetUserName,
             "numVotes": numVotes,
-            "rating" : rating
+            "rating" : rating,
+            "experation": toInterval(experation)
             ])
     }
     
