@@ -73,9 +73,9 @@ class RegisterViewController: UIViewController,  UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        nameErrorLabel.text = ""
-        usernameErrorLabel.text = ""
-        passwordErrorLabel.text = ""
+        nameErrorLabel.text = " "
+        usernameErrorLabel.text = " "
+        passwordErrorLabel.text = " "
     }
     
     override func didReceiveMemoryWarning() {
