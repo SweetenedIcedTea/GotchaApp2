@@ -13,6 +13,7 @@ class GamesTableViewController: UITableViewController {
     var me: Player = Me!
     var ref : DatabaseReference!
     var games = [Game]()
+    var selectedGame: Game?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,17 +63,20 @@ class GamesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        let gameItem = games[indexPath.row]
-        ref = Database.database().reference(withPath: "games").child(gameItem.name).child("players")
-        ref.updateChildValues([
-            me.name: me.toAnyObject()
-            ])
-        
-        print("Added \(me.username) to the game \(gameItem.name)")
+        selectedGame = games[indexPath.row]
+        print("Added \(me.username) to the game \(selectedGame!.name)")
+        performSegue(withIdentifier: "JoinGame", sender: self)
     }
     
     @IBAction func unwindToGames(unwindSegue: UIStoryboardSegue){
         print("unwind to Games triggered")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "JoinGame"{
+            var vc = segue.destination as! JoinGamesViewController
+            vc.game = selectedGame!
+        }
     }
     
 }

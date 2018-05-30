@@ -14,6 +14,7 @@ class MyGamesTableViewController: UITableViewController {
     var me: Player = Me!
     var ref : DatabaseReference!
     var games = [Game]()
+    var selectedGame: Game?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,15 +71,19 @@ class MyGamesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        let gameItem = games[indexPath.row]
-        ref = Database.database().reference(withPath: "games").child(gameItem.name)
-        if gameItem.admin == self.me{
-            ref.updateChildValues([
-                "isStarted": true
-                ])
-            print("\(gameItem.name) has been started")
+        selectedGame = games[indexPath.row]
+        
+        if selectedGame!.admin == self.me{
+            performSegue(withIdentifier: "StartGame", sender: self)
         } else {
         print("\(self.me.name) is not an admin of this game")
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "StartGame"{
+            var vc = segue.destination as! StartGamesViewController
+            vc.game = selectedGame!
         }
     }
     
