@@ -31,11 +31,11 @@ class SendViewController: UIViewController{
         
     }
     
-    func sendImage(){
+    func sendImage(for: String){
         //Encoding image
         let loadedImageData = UIImagePNGRepresentation(imageView.image!)!
         
-        let imageRef = storageRef.child("images/evalFor\(String(describing: title)).png")
+        let imageRef = storageRef.child("images/evalFor\(for).png")
 //        let imageRef = storageRef.child("images/eval.png")
         let upLoadTask = imageRef.putData(loadedImageData)
         
@@ -97,7 +97,7 @@ class SendViewController: UIViewController{
                     let newEvalRef = self.ref.child("EvalFor\(title)")
                     newEvalRef.setValue(newEvaluation.toAnyObject())
                     //instead of the above three lines, do the code in yesButtonTapped to upload the image file with the correct path name
-                    self.sendImage()
+                    self.sendImage(for: title)
                     self.performSegue(withIdentifier: "backToCamSegue", sender: nil)
                     
                 }
