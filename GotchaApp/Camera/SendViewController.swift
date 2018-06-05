@@ -95,7 +95,7 @@ class SendViewController: UIViewController{
                     
                     let newEvalRef = self.ref.child("EvalFor\(title)")
                     newEvalRef.setValue(newEvaluation.toAnyObject())
-                    //instead of the above three lines, do the code in yesButtonTapped to upload the image file with the correct path name
+                    
                     self.sendImage(forName: title)
                     self.performSegue(withIdentifier: "backToCamSegue", sender: nil)
                     

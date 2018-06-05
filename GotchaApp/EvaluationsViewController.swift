@@ -15,9 +15,13 @@ class EvaluationsViewController: UITableViewController {
     let storage = Storage.storage()
     var evaluations = [Evaluation]()
     var images = [UIImage]()
-    var imagesLoaded: Bool = false {
+    var imagesLoaded: Bool = false
+    var numImagesLoaded: Int = 0{
         didSet{
-            tableView.reloadData()
+            if numImagesLoaded == evaluations.count{
+                tableView.reloadData()
+                imagesLoaded = true
+            }
         }
     }
     
@@ -41,11 +45,11 @@ class EvaluationsViewController: UITableViewController {
         print("EvaluationsViewController Appearing")
         imagesLoaded = false
         getEvaluations()
-        getImages()
+        
     }
     
     func getEvaluations(){
-        
+        print("getting Evaluations")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? [String: Any]
             for eval in value!{
@@ -75,6 +79,8 @@ class EvaluationsViewController: UITableViewController {
                 newEval.numVotes = numVotes
                 newEval.rating = rating
                 
+                
+                
                 if !self.evaluations.contains(newEval){
                     self.evaluations.append(newEval)
                     
@@ -82,28 +88,35 @@ class EvaluationsViewController: UITableViewController {
                 print("evaluations reloaded")
                 self.tableView.reloadData()
             }
-            
+            self.getImages()
         })
+        
     }
     
     func getImages(){
+        print("getting images")
         //            let pathReference = self.storage.reference(withPath: "images/evalFor\(targetUserName).png")
         self.images = []
-        let pathReference = self.storage.reference(withPath: "images/eval.png")
-        
-        pathReference.getData(maxSize: 15 * 1024 * 1024, completion: { (data, error) in
-            if let error = error{
-                print("error loading image:")
-                print(error)
-            } else {
-                if let image = UIImage(data: data!){
-                    self.images.append(image)
-                    print("image appended")
-                    print(self.images)
-                    self.imagesLoaded = true
+        for eval in evaluations{
+            let name = eval.targetUserName
+            print("attempting to get image: images/evalFor\(name).png")
+            let pathReference = self.storage.reference(withPath: "images/evalFor\(name).png")
+            
+            pathReference.getData(maxSize: 15 * 1024 * 1024, completion: { (data, error) in
+                if let error = error{
+                    print("error loading image:")
+                    print(error)
+                } else {
+                    if let image = UIImage(data: data!){
+                        self.images.append(image)
+                        print("image appended")
+                        print(self.images)
+                        self.numImagesLoaded += 1
+                    }
                 }
-            }
-        })
+            })
+        }
+        
     }
     
     func correctedImage(_ image: UIImage) -> UIImage{
