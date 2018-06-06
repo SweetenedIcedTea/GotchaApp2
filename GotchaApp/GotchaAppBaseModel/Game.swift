@@ -41,11 +41,13 @@ class Game: Hashable, CustomStringConvertible{
             let value = snapshot.value as? [String: AnyObject],
             let name = value["name"] as? String,
             let admin = value["admin"] as? [String: Any],
+            let isStarted = value["isStarted"] as? Bool,
             let players = value["players"] as? [String: [String: Any]] else {
                 return nil
         }
         self.name = name
         self.admin = errorPlayer
+        self.isStarted = isStarted
         self.players = [errorPlayer]
         self.admin = self.toPlayer(values: admin)
         self.players = self.toPlayers(values: players)

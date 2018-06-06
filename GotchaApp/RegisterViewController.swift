@@ -63,7 +63,7 @@ class RegisterViewController: UIViewController,  UITextFieldDelegate{
         let newPlayerRef = self.ref.child(userText!.lowercased())
         newPlayerRef.setValue(newPlayer.toAnyObject())
 
-        
+        Me = newPlayer
         self.performSegue(withIdentifier: "registeredSegue", sender: nil)
 
     }

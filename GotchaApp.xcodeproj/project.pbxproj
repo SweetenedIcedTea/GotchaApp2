@@ -38,6 +38,7 @@
 		8876D66A2094F86800D2C436 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876D6692094F86800D2C436 /* SendViewController.swift */; };
 		8876D66C2094FA8700D2C436 /* TargetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876D66B2094FA8700D2C436 /* TargetingView.swift */; };
 		8876D66E2094FAAC00D2C436 /* FocusingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876D66D2094FAAC00D2C436 /* FocusingImageView.swift */; };
+		88AB936020C763C6006543DA /* SendingEvalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB935F20C763C6006543DA /* SendingEvalViewController.swift */; };
 		88E5BD5F20A26D7D009ED0AB /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5BD5E20A26D7D009ED0AB /* Evaluation.swift */; };
 		88F62D2320BCAF4500200055 /* SingleEvalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F62D2220BCAF4500200055 /* SingleEvalViewController.swift */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		8876D6692094F86800D2C436 /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		8876D66B2094FA8700D2C436 /* TargetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetingView.swift; sourceTree = "<group>"; };
 		8876D66D2094FAAC00D2C436 /* FocusingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusingImageView.swift; sourceTree = "<group>"; };
+		88AB935F20C763C6006543DA /* SendingEvalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingEvalViewController.swift; sourceTree = "<group>"; };
 		88E5BD5E20A26D7D009ED0AB /* Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluation.swift; sourceTree = "<group>"; };
 		88F62D2220BCAF4500200055 /* SingleEvalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEvalViewController.swift; sourceTree = "<group>"; };
 		EAD0CE7CC242533E88649AEA /* Pods_GotchaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GotchaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,20 +172,13 @@
 				885A1BC02093B70E0074ACF6 /* GoogleService-Info.plist */,
 				87DB4B6A203756AA003622F5 /* Info.plist */,
 				8869D6A22097766C0032558D /* GotchaAppBaseModel */,
-				885A1BB02090F5070074ACF6 /* MenuViewController.swift */,
 				87CA9AF5209A262D003C11E6 /* LoginViewController.swift */,
-				885A1BB22090F55C0074ACF6 /* GamesTableViewController.swift */,
 				87CA9AF7209A281D003C11E6 /* RegisterViewController.swift */,
-				87184D9920BD9C62006E5DE3 /* MyGamesTableViewController.swift */,
-				8731E75E20BE5DD200165BF6 /* StartGameView.swift */,
-				8797927320AC9EFB00BA0453 /* AddGamesView.swift */,
-				8731E75C20BE59E600165BF6 /* JoinGameView.swift */,
-				87FB826720B672B700076216 /* GameCell.swift */,
+				885A1BB02090F5070074ACF6 /* MenuViewController.swift */,
+				8866A41620C77CBC00CFE469 /* Games */,
 				8876D6712095087E00D2C436 /* Camera */,
 				885A1BB62090F59D0074ACF6 /* ShopViewController.swift */,
-				885A1BB82090F5B70074ACF6 /* EvaluationsViewController.swift */,
-				8870E83220AC9FC4004A25E6 /* EvaluationCell.swift */,
-				88F62D2220BCAF4500200055 /* SingleEvalViewController.swift */,
+				8866A41720C77D0800CFE469 /* Evaluations */,
 			);
 			path = GotchaApp;
 			sourceTree = "<group>";
@@ -204,6 +199,29 @@
 				87DB4B80203756AB003622F5 /* Info.plist */,
 			);
 			path = GotchaAppUITests;
+			sourceTree = "<group>";
+		};
+		8866A41620C77CBC00CFE469 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				885A1BB22090F55C0074ACF6 /* GamesTableViewController.swift */,
+				87184D9920BD9C62006E5DE3 /* MyGamesTableViewController.swift */,
+				8731E75E20BE5DD200165BF6 /* StartGameView.swift */,
+				8797927320AC9EFB00BA0453 /* AddGamesView.swift */,
+				8731E75C20BE59E600165BF6 /* JoinGameView.swift */,
+				87FB826720B672B700076216 /* GameCell.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		8866A41720C77D0800CFE469 /* Evaluations */ = {
+			isa = PBXGroup;
+			children = (
+				885A1BB82090F5B70074ACF6 /* EvaluationsViewController.swift */,
+				8870E83220AC9FC4004A25E6 /* EvaluationCell.swift */,
+				88F62D2220BCAF4500200055 /* SingleEvalViewController.swift */,
+			);
+			path = Evaluations;
 			sourceTree = "<group>";
 		};
 		8869D6A22097766C0032558D /* GotchaAppBaseModel */ = {
@@ -228,6 +246,7 @@
 				8876D6692094F86800D2C436 /* SendViewController.swift */,
 				8876D66B2094FA8700D2C436 /* TargetingView.swift */,
 				8876D66D2094FAAC00D2C436 /* FocusingImageView.swift */,
+				88AB935F20C763C6006543DA /* SendingEvalViewController.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -433,6 +452,7 @@
 				87CA9AF6209A262D003C11E6 /* LoginViewController.swift in Sources */,
 				885A1BB72090F59D0074ACF6 /* ShopViewController.swift in Sources */,
 				8870E83320AC9FC4004A25E6 /* EvaluationCell.swift in Sources */,
+				88AB936020C763C6006543DA /* SendingEvalViewController.swift in Sources */,
 				8731E75F20BE5DD200165BF6 /* StartGameView.swift in Sources */,
 				885A1BB32090F55C0074ACF6 /* GamesTableViewController.swift in Sources */,
 				8876D66A2094F86800D2C436 /* SendViewController.swift in Sources */,

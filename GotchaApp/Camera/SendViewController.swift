@@ -16,6 +16,7 @@ class SendViewController: UIViewController{
 //    let imagesRef = Storage.storage().reference().child("images/eval.png")
     let storageRef = Storage.storage().reference()
     var games = [Game]()
+    var forName: String = ""
     
     
     @IBOutlet var imageView: UIImageView!
@@ -26,43 +27,10 @@ class SendViewController: UIViewController{
     @IBAction func yesButtonTapped(){
         print("Yes button was tapped")
         
-//        sendImage()
         presentTargetSelectingAlert()
         
     }
     
-    func sendImage(forName: String){
-        //Encoding image
-        let loadedImageData = UIImagePNGRepresentation(imageView.image!)!
-        let imageRef = storageRef.child("images/evalFor\(forName).png")
-//        let imageRef = storageRef.child("images/eval.png")
-        let upLoadTask = imageRef.putData(loadedImageData)
-        
-        upLoadTask.observe(.success) { snapshot in
-            print("success uploading!")
-        }
-        upLoadTask.observe(.failure) { snapshot in
-            if let error = snapshot.error as NSError? {
-                switch (StorageErrorCode(rawValue: error.code)!) {
-                case .objectNotFound:
-                    print("object was not found")
-                    break
-                case .unauthorized:
-                    print("user doesn't have authorization")
-                    break
-                case .cancelled:
-                    print("user cancelled the upload")
-                    break
-                case .unknown:
-                    print("unknown reason for failure")
-                    break
-                default:
-                    print("idk why")
-                    break
-                }
-            }
-        }
-    }
     
     func presentTargetSelectingAlert(){
         
@@ -95,9 +63,9 @@ class SendViewController: UIViewController{
                     
                     let newEvalRef = self.ref.child("EvalFor\(title)")
                     newEvalRef.setValue(newEvaluation.toAnyObject())
-                    
-                    self.sendImage(forName: title)
-                    self.performSegue(withIdentifier: "backToCamSegue", sender: nil)
+                    self.forName = title
+//                    self.sendImage(forName: title)
+                    self.performSegue(withIdentifier: "showProgress", sender: nil)
                     
                 }
                 alert.addAction(action)
@@ -137,6 +105,7 @@ class SendViewController: UIViewController{
     }
     
     func getGames(){
+        self.games = []
         let gamesref = Database.database().reference(withPath: "games")
         gamesref.observe(.value, with: { snapshot in
             var newGames: [Game] = []
@@ -144,20 +113,35 @@ class SendViewController: UIViewController{
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let gameItem = Game(snapshot: snapshot) {
-                    
                     if gameItem.players.contains(self.me){
-                        newGames.append(gameItem)
+                        if gameItem.isStarted == true {
+                            newGames.append(gameItem)
+                        }
                     }
-                    
                 }
             }
             
             self.games = newGames
+            print(self.games)
         })
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let id = segue.identifier!
+        switch id{
+        case "showProgress":
+            let SEVC = segue.destination as! SendingEvalViewController
+            
+            SEVC.image = self.image
+            SEVC.forName = self.forName
+            
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
     }
     
 }

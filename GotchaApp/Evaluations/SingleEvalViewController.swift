@@ -43,6 +43,9 @@ class SingleEvalViewController: UIViewController {
         
         if self.image != nil{
             applyVisibilityGradient()
+        } else {
+            let coverView = UIView()
+            self.view.addSubview(coverView)
         }
         
     }

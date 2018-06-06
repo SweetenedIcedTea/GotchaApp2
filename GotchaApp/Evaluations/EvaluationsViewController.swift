@@ -15,14 +15,23 @@ class EvaluationsViewController: UITableViewController {
     let storage = Storage.storage()
     var evaluations = [Evaluation]()
     var images = [UIImage]()
+    var imageDictionary = [String: UIImage]()
     var imagesLoaded: Bool = false
     var numImagesLoaded: Int = 0{
         didSet{
-            if numImagesLoaded == evaluations.count{
-                tableView.reloadData()
+            if numImagesLoaded == evaluations.count && numImagesLoaded != 0{
+                print("loaded enough images")
                 imagesLoaded = true
+                tableView.reloadData()
+                
+                
+                print(evaluations)
             }
         }
+    }
+    
+    @IBAction func refreshTapped(_ sender: UIBarButtonItem) {
+        reload()
     }
     
     override func viewDidLoad() {
@@ -30,6 +39,7 @@ class EvaluationsViewController: UITableViewController {
         
         tableView.rowHeight = 130
         tableView.estimatedRowHeight = 130
+        reload()
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,15 +53,23 @@ class EvaluationsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         print("EvaluationsViewController Appearing")
+    }
+    
+    func reload(){
         imagesLoaded = false
+        numImagesLoaded = 0
+//        images = []
+        evaluations = []
         getEvaluations()
-        
     }
     
     func getEvaluations(){
         print("getting Evaluations")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? [String: Any]
+            if value == nil || value?.count == 0{
+                return
+            }
             for eval in value!{
                 let evalProperty = eval.value as? [String: Any]
                 
@@ -83,9 +101,9 @@ class EvaluationsViewController: UITableViewController {
                 
                 if !self.evaluations.contains(newEval){
                     self.evaluations.append(newEval)
-                    
+                    print("appended eval for \(targetUserName)")
                 }
-                print("evaluations reloaded")
+                
                 self.tableView.reloadData()
             }
             self.getImages()
@@ -95,8 +113,7 @@ class EvaluationsViewController: UITableViewController {
     
     func getImages(){
         print("getting images")
-        //            let pathReference = self.storage.reference(withPath: "images/evalFor\(targetUserName).png")
-        self.images = []
+        self.imageDictionary = [:]
         for eval in evaluations{
             let name = eval.targetUserName
             print("attempting to get image: images/evalFor\(name).png")
@@ -108,9 +125,8 @@ class EvaluationsViewController: UITableViewController {
                     print(error)
                 } else {
                     if let image = UIImage(data: data!){
-                        self.images.append(image)
-                        print("image appended")
-                        print(self.images)
+                        self.imageDictionary[name] = image
+                        print("image for \(name) added")
                         self.numImagesLoaded += 1
                     }
                 }
@@ -126,7 +142,7 @@ class EvaluationsViewController: UITableViewController {
         let width = reorientedImage.cgImage!.width
         let height = reorientedImage.cgImage!.height
         //true size is 720x720
-        let cropRegion = CGRect(origin: CGPoint(x: (width/2)-500, y: (height/2)-500), size: CGSize(width: 1000, height: 1000))
+        let cropRegion = CGRect(origin: CGPoint(x: (width/2)-840, y: (height/2)-620), size: CGSize(width: 1250, height: 1250))
         let croppedCGImage = reorientedImage.cgImage?.cropping(to: cropRegion)
         
         return UIImage(cgImage: croppedCGImage!, scale: 1.0, orientation: .right)
@@ -142,7 +158,9 @@ class EvaluationsViewController: UITableViewController {
         var image: UIImage? = nil
         
         if imagesLoaded == true {
-            image = correctedImage(images[indexPath.row])
+            print(imageDictionary)
+            image = correctedImage(imageDictionary[eval.targetUserName]!)
+            
         } else {
             print("images not loaded")
         }
@@ -164,18 +182,13 @@ class EvaluationsViewController: UITableViewController {
         switch id{
         case "showSingleVC":
             if let row = tableView.indexPathForSelectedRow?.row {
+                let eval = evaluations[row]
+                let img = imageDictionary[eval.targetUserName]!
+                let reorientedImg = UIImage(cgImage: img.cgImage!, scale: 1.0, orientation: .right)
+                let SEVC = segue.destination as! SingleEvalViewController
+                SEVC.image = reorientedImg
                 
-                
-                if images.count > row {
-                    let img = images[row]
-                    
-                    let reorientedImg = UIImage(cgImage: img.cgImage!, scale: 1.0, orientation: .right)
-                    let SEVC = segue.destination as! SingleEvalViewController
-                    SEVC.image = reorientedImg
-                    
-                    let eval = evaluations[row]
-                    SEVC.evaluation = eval
-                }
+                SEVC.evaluation = eval
                 
             }
             
