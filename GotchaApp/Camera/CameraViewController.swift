@@ -14,7 +14,6 @@ class CameraViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet var imagePreview: UIImageView!
     @IBOutlet var visibilityBackground: UIView!
     @IBOutlet var flashButton: UIButton!
-    @IBOutlet var targetLabel: UILabel!
     @IBOutlet var targetingViewOutline: UIView!
     
     var focusingImageView: FocusingImageView?

@@ -13,9 +13,13 @@ class SingleEvalViewController: UIViewController {
     let ref = Database.database().reference(withPath: "all-evaluations")
     var me: Player = Me!
     var evaluation: Evaluation!
+    var name: String!
     
+    @IBOutlet var noButton: UIButton!
+    @IBOutlet var yesButton: UIButton!
+    @IBOutlet var CantTellButton: UIButton!
     @IBOutlet var imageView: UIImageView!
-    var image: UIImage!
+    var image: UIImage?
     
     @IBOutlet var questionLabel: UILabel!
     
@@ -38,15 +42,17 @@ class SingleEvalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        // Set the image
-        self.imageView.image = self.image
         
         if self.image != nil{
+            self.imageView.image = self.image
             applyVisibilityGradient()
         } else {
-            let coverView = UIView()
-            self.view.addSubview(coverView)
+            self.yesButton.isUserInteractionEnabled = false
+            self.noButton.isUserInteractionEnabled = false
+            self.CantTellButton.isUserInteractionEnabled = false
         }
+        
+        self.questionLabel.text = "Is this \(name!)?"
         
     }
     

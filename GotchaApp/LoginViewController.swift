@@ -50,6 +50,7 @@ class LoginViewController: UIViewController,  UITextFieldDelegate {
             
             if passHash != value?["password"] as? Int ?? -420{
                 print("password is incorrect")
+                self.invalidLoginLabel.text = "Password or Username incorrect"
                 return
             } else {
                 print("password is correct")
@@ -111,6 +112,12 @@ class LoginViewController: UIViewController,  UITextFieldDelegate {
         Me!.targets = myTargets
         
         print(myTargets)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        usernameField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        return true
     }
     
     override func didReceiveMemoryWarning() {
