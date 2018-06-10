@@ -16,6 +16,7 @@ class SendingEvalViewController: UIViewController {
     
     var image: UIImage!
     var forName: String!
+    @IBOutlet var sendingLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var progressView: UIProgressView!
     
@@ -26,6 +27,7 @@ class SendingEvalViewController: UIViewController {
         // Set the image
         self.imageView.image = self.image
         self.sendImage(forName: self.forName)
+        self.sendingLabel.text = "Sending Evaluation for \(forName!)"
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,4 +82,7 @@ class SendingEvalViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("SendingEvalVC Appearing")
+    }
 }

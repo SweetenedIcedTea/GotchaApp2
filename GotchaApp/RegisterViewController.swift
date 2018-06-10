@@ -38,19 +38,19 @@ class RegisterViewController: UIViewController,  UITextFieldDelegate{
             allFieldsAreFilled = false
             nameErrorLabel.text = "Please enter your name"
         } else {
-            nameErrorLabel.text = ""
+            nameErrorLabel.text = " "
         }
         if userTextField.text == " " || userTextField.text == ""{
             allFieldsAreFilled = false
             usernameErrorLabel.text = "Please enter a username"
         } else {
-            usernameErrorLabel.text = ""
+            usernameErrorLabel.text = " "
         }
         if passTextField.text == " " || passTextField.text == ""{
             allFieldsAreFilled = false
             passwordErrorLabel.text = "Please enter a password"
         } else {
-            passwordErrorLabel.text = ""
+            passwordErrorLabel.text = " "
         }
         
         if allFieldsAreFilled == false{
@@ -68,7 +68,12 @@ class RegisterViewController: UIViewController,  UITextFieldDelegate{
 
     }
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTextField.resignFirstResponder()
+        userTextField.resignFirstResponder()
+        passTextField.resignFirstResponder()
+        return true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

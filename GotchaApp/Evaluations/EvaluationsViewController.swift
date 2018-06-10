@@ -29,9 +29,23 @@ class EvaluationsViewController: UITableViewController {
             }
         }
     }
+    //Timer
+    var timer = Timer()
+    var timerIsRunning = false //a way to keep track if the timer is running
     
     @IBAction func refreshTapped(_ sender: UIBarButtonItem) {
-        reload()
+        if imagesLoaded{
+            reload()
+        }
+    }
+    
+    func startTimer(){
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(EvaluationsViewController.refreshTime), userInfo: nil, repeats: true)
+    }
+    
+    @objc func refreshTime(){
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -53,6 +67,8 @@ class EvaluationsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         print("EvaluationsViewController Appearing")
+        
+        startTimer()
     }
     
     func reload(){
@@ -168,10 +184,35 @@ class EvaluationsViewController: UITableViewController {
         //Configure the cell
         cell.nameLabel.text = eval.targetUserName
         cell.timeLabel.text = Date(timeIntervalSince1970: eval.toInterval(eval.experation)).timeIntervalSince(Date()).description
+        let time = Date(timeIntervalSince1970: eval.toInterval(eval.experation)).timeIntervalSince(Date())
+        
+        cell.timeLabel.text = timeString(t: time)
         cell.targetImageView.image = image
         
         return cell
     }
+    
+    func timeString(t: TimeInterval) -> String{
+        let roundedTime = Int(round(t))
+        let hours = roundedTime / 3600
+        var hoursString = String(hours)
+        if hoursString.count == 1{
+            hoursString = "0\(hours)"
+        }
+        let minutes = (roundedTime % 3600) / 60
+        var minutesString = String(minutes)
+        if minutesString.count == 1{
+            minutesString = "0\(minutes)"
+        }
+        let seconds = (roundedTime % 3600) % 60
+        var secondsString = String(seconds)
+        if secondsString.count == 1{
+            secondsString = "0\(seconds)"
+        }
+        
+        return "\(hoursString):\(minutesString):\(secondsString)"
+    }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return evaluations.count
@@ -183,11 +224,16 @@ class EvaluationsViewController: UITableViewController {
         case "showSingleVC":
             if let row = tableView.indexPathForSelectedRow?.row {
                 let eval = evaluations[row]
-                let img = imageDictionary[eval.targetUserName]!
-                let reorientedImg = UIImage(cgImage: img.cgImage!, scale: 1.0, orientation: .right)
+                let name = eval.targetUserName
+                let img: UIImage? = imageDictionary[name]
                 let SEVC = segue.destination as! SingleEvalViewController
-                SEVC.image = reorientedImg
                 
+                if let image = img {
+                    let reorientedImg = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .right)
+                    SEVC.image = reorientedImg
+                }
+                
+                SEVC.name = name
                 SEVC.evaluation = eval
                 
             }
