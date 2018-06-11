@@ -1347,6 +1347,7 @@ Try Again</string>
         <image name="shopIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="SWl-0c-hc4"/>
         <segue reference="Vmm-5O-ZHt"/>
         <segue reference="x49-F2-IAw"/>
         <segue reference="lr2-Tw-EeB"/>
