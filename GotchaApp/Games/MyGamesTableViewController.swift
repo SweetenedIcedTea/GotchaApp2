@@ -72,7 +72,6 @@ class MyGamesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         selectedGame = games[indexPath.row]
-        
         if selectedGame!.admin == self.me{
             performSegue(withIdentifier: "StartGame", sender: self)
         } else {
