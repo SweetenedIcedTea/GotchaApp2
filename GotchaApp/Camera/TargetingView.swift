@@ -58,6 +58,9 @@ class TargetingView: UIView{
     override func draw(_ rect: CGRect) {
         print("drawing target")
         for line in lines{
+//            //Redish
+//            UIColor(red: 0.37, green: 0.00, blue: 0.00, alpha: 1.0).setStroke()
+            //Orange
             UIColor(red: 247.0/255.0, green: 134.0/255.0, blue: 29.0/255.0, alpha: 0.8).setStroke()
             stroke(line)
         }
