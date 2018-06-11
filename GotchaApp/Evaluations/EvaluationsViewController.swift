@@ -15,20 +15,15 @@ class EvaluationsViewController: UITableViewController {
     let storage = Storage.storage()
     var evaluations = [Evaluation]()
     var images = [UIImage]()
-    var imageDictionary = [String: UIImage]()
-    var imagesLoaded: Bool = false
-    var numImagesLoaded: Int = 0{
-        didSet{
-            if numImagesLoaded == evaluations.count && numImagesLoaded != 0{
-                print("loaded enough images")
-                imagesLoaded = true
-                tableView.reloadData()
-                
-                
-                print(evaluations)
+    var imageDictionary = [String: UIImage]() {
+        didSet {
+            if imageDictionary.count == evaluations.count{
+                self.imagesLoaded = true
             }
         }
     }
+    var imagesLoaded: Bool = false
+    
     //Timer
     var timer = Timer()
     var timerIsRunning = false //a way to keep track if the timer is running
@@ -73,8 +68,6 @@ class EvaluationsViewController: UITableViewController {
     
     func reload(){
         imagesLoaded = false
-        numImagesLoaded = 0
-//        images = []
         evaluations = []
         getEvaluations()
     }
@@ -113,8 +106,6 @@ class EvaluationsViewController: UITableViewController {
                 newEval.numVotes = numVotes
                 newEval.rating = rating
                 
-                
-                
                 if !self.evaluations.contains(newEval){
                     self.evaluations.append(newEval)
                     print("appended eval for \(targetUserName)")
@@ -143,7 +134,7 @@ class EvaluationsViewController: UITableViewController {
                     if let image = UIImage(data: data!){
                         self.imageDictionary[name] = image
                         print("image for \(name) added")
-                        self.numImagesLoaded += 1
+                        self.tableView.reloadData()
                     }
                 }
             })
@@ -173,12 +164,8 @@ class EvaluationsViewController: UITableViewController {
         
         var image: UIImage? = nil
         
-        if imagesLoaded == true {
-            print(imageDictionary)
+        if imageDictionary.keys.contains(eval.targetUserName){
             image = correctedImage(imageDictionary[eval.targetUserName]!)
-            
-        } else {
-            print("images not loaded")
         }
         
         //Configure the cell

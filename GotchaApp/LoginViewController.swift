@@ -125,4 +125,8 @@ class LoginViewController: UIViewController,  UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func unwindToLogin(unwindSegue: UIStoryboardSegue){
+        print("unwind to Login triggered")
+    }
+    
 }

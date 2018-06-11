@@ -70,7 +70,7 @@ class MyGamesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        guard tableView.cellForRow(at: indexPath) != nil else { return }
         selectedGame = games[indexPath.row]
         if selectedGame!.admin == self.me{
             performSegue(withIdentifier: "StartGame", sender: self)
@@ -81,7 +81,7 @@ class MyGamesTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "StartGame"{
-            var vc = segue.destination as! StartGamesViewController
+            let vc = segue.destination as! StartGamesViewController
             vc.game = selectedGame!
         }
     }
