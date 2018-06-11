@@ -27,22 +27,37 @@ class LoginViewController: UIViewController,  UITextFieldDelegate {
         super.viewDidLoad()
         ref = Database.database().reference(withPath: "registered-players")
         // Do any additional setup after loading the view, typically from a nib.
-        usernameErrorLabel.text = nil
-        passwordErrorLabel.text = nil
-        invalidLoginLabel.text = nil
+        usernameErrorLabel.text = " "
+        passwordErrorLabel.text = " "
+        invalidLoginLabel.text = " "
         
-        usernameField.text = nil
-        passwordField.text = nil
+        usernameField.delegate = self
+        passwordField.delegate = self
+        
     }
     
     @IBAction func login(_ sender: UIButton) {
+        
+        var allFieldsFilled = true
+        if usernameField.text == " " || usernameField.text == ""{
+            allFieldsFilled = false
+            usernameErrorLabel.text = "Please enter your username"
+        } else {
+            usernameErrorLabel.text = " "
+        }
+        if passwordField.text == " " || passwordField.text == ""{
+            allFieldsFilled = false
+            passwordErrorLabel.text = "Please enter your username"
+        } else {
+            passwordErrorLabel.text = " "
+        }
+        if allFieldsFilled == false{
+            return
+        }
+        
         let userID = usernameField.text!
         let passText = passwordField.text!
-        if userID.count < 1 || passText.count < 1{
-            return
-        } else {
-            print(userID.count, passText.count)
-        }
+        
         let passHash = passText.hashValue &* 93491
         ref.child(userID.lowercased()).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value

@@ -81,6 +81,10 @@ class RegisterViewController: UIViewController,  UITextFieldDelegate{
         nameErrorLabel.text = " "
         usernameErrorLabel.text = " "
         passwordErrorLabel.text = " "
+        
+        nameTextField.delegate = self
+        passTextField.delegate = self
+        userTextField.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
