@@ -14,6 +14,7 @@ class Evaluation: CustomStringConvertible, Equatable{
     var numVotes: Int
     var rating: Double
     var experation: Date
+    var voted = [Player]()
     
     init(targetUserName: String, exp: Date){
         self.targetUserName = targetUserName
@@ -40,12 +41,22 @@ class Evaluation: CustomStringConvertible, Equatable{
         return time.timeIntervalSince1970
     }
     
+    func playersToAnyObject(_ players: [Player])-> [String: [String: Any]]{
+        var result = [String: [String: Any]]()
+        for player in players{
+            let addOn = player.toAnyObject() as! [String: Any]
+            result[player.name] = addOn
+        }
+        return(result)
+    }
+    
     func toAnyObject()-> Any{
         return([
             "targetUserName": targetUserName,
             "numVotes": numVotes,
             "rating" : rating,
-            "experation": toInterval(experation)
+            "experation": toInterval(experation),
+            "votedPlayers" : playersToAnyObject(voted)
             ])
     }
     
